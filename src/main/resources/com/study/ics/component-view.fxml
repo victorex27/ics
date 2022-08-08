@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="47.0" prefWidth="147.0" style="-fx-border-color: blue;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.study.ics.ComponentController">
+<children>
+    <Label fx:id="label" layoutX="53.0" layoutY="16.0" text="Item 2" />
+</children>
+   <cursor>
+      <Cursor fx:constant="MOVE" />
+   </cursor>
+</Pane>
