@@ -22,6 +22,8 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(root, 800, 450);
         scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
         stage.setTitle("Hello!");
+        stage.setMaximized(true);
+//        stage.setFullScreen(true);
         stage.setScene(scene);
         stage.show();
 

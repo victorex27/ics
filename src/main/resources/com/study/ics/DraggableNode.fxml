@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.*?>
 <?import javafx.geometry.*?>
@@ -12,7 +13,7 @@
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <GridPane styleClass="node-overlay">
+            <GridPane styleClass="not-visible-background" stylesheets="@../../../application.css">
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
                 <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="25.0" />
@@ -21,12 +22,15 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="close_button" alignment="TOP_RIGHT" text="X" textAlignment="RIGHT" GridPane.columnIndex="1">
+                  <Label fx:id="close_button" alignment="TOP_RIGHT" style="-fx-text-fill: black;" text="X" textAlignment="RIGHT" GridPane.columnIndex="1">
                      <padding>
                         <Insets right="10.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="title_bar" text="Label" />
+                  <Label fx:id="title_bar" style="-fx-text-fill: black;" text="Label">
+                     <font>
+                        <Font size="9.0" />
+                     </font></Label>
                </children>
             </GridPane>
             <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="66.0">

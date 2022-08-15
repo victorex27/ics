@@ -7,16 +7,16 @@
 <?import javafx.scene.layout.*?>
 
 <fx:root fx:id="root_pane" minHeight="200.0" minWidth="200.0" stylesheets="@../../../application.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <SplitPane fx:id="base_pane" dividerPositions="0.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <items>
-            <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0">
-               <content>
-                  <VBox fx:id="left_pane" prefWidth="250.0" spacing="10.0" />
-               </content>
-            </ScrollPane>
-            <AnchorPane fx:id="right_pane" />
-         </items>
-      </SplitPane>
-   </children>
+    <children>
+        <SplitPane fx:id="base_pane" dividerPositions="0.5" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <ScrollPane hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity">
+                    <content>
+                        <VBox fx:id="left_pane" prefWidth="300.0" spacing="10.0" styleClass="left-pane" />
+                    </content>
+                </ScrollPane>
+                <AnchorPane fx:id="right_pane" />
+            </items>
+        </SplitPane>
+    </children>
 </fx:root>

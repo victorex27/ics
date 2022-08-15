@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -58,6 +59,8 @@ public class DraggableNode extends AnchorPane {
     @FXML
     private Button connectorRight;
 
+    @FXML private ImageView imageView;
+
     AnchorPane parentPane;
 
 
@@ -70,6 +73,8 @@ public class DraggableNode extends AnchorPane {
 
 
     private final DraggableNode self;
+
+    private DraggableImageview draggableImageview;
 
     public DraggableNode(AnchorPane _parentPane) {
 
@@ -139,42 +144,14 @@ public class DraggableNode extends AnchorPane {
 
         mType = type;
 
-        getStyleClass().clear();
-        getStyleClass().add("dragicon");
+//        getStyleClass().clear();
+//        getStyleClass().add("dragicon");
 
-        switch (mType) {
+        draggableImageview = new DraggableImageview(getClass(), mType);
 
-            case blue:
-                getStyleClass().add("icon-blue");
-                break;
 
-            case red:
-                getStyleClass().add("icon-red");
-                break;
-
-            case green:
-                getStyleClass().add("icon-green");
-                break;
-
-            case grey:
-                getStyleClass().add("icon-grey");
-                break;
-
-            case purple:
-                getStyleClass().add("icon-purple");
-                break;
-
-            case yellow:
-                getStyleClass().add("icon-yellow");
-                break;
-
-            case black:
-                getStyleClass().add("icon-black");
-                break;
-
-            default:
-                break;
-        }
+        imageView.setImage(draggableImageview.getImage());
+        title_bar.setText(draggableImageview.getLabel());
     }
 
     public void buildNodeDragHandlers() {
@@ -269,12 +246,20 @@ public class DraggableNode extends AnchorPane {
 
             numberOfTimesClicked = 0;
 
+            DraggableNode beginningNode = connectingNodes[0];
+            DraggableNode endingNode = connectingNodes[1];
+
+            if(beginningNode.equals(endingNode)){
+                return;
+            }
+
+
+
             CubicCurve line = new CubicCurve();
             line.setStroke(Color.BLACK);
             line.setFill(null);
             line.setStrokeWidth(2);
-            DraggableNode beginningNode = connectingNodes[0];
-            DraggableNode endingNode = connectingNodes[1];
+
 
             Button beginningNodeActiveButton = beginningNode.getActiveButton();
             Button endingNodeActiveButton = endingNode.getActiveButton();

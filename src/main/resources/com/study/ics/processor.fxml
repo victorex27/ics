@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root fx:id="root_pane" minWidth="310.0" stylesheets="@../../../application.css" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+    <children>
+        <Button fx:id="scan" layoutX="27.0" layoutY="22.0" mnemonicParsing="false" text="Scan">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+        <ProgressBar fx:id="progressBar" layoutX="89.0" layoutY="25.0" prefWidth="200.0" progress="0.0" />
+        <ScrollPane layoutX="27.0" layoutY="67.0" prefWidth="262.0">
+            <content>
+                <VBox fx:id="vBox" />
+            </content>
+        </ScrollPane>
+    </children>
+</fx:root>

@@ -1,12 +1,14 @@
 package com.study.ics;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
+import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DataFormat;
@@ -14,6 +16,8 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class RootLayout extends AnchorPane{
@@ -23,6 +27,8 @@ public class RootLayout extends AnchorPane{
     @FXML VBox left_pane;
 
     private DragIcon mDragOverIcon = null;
+
+    private OutputNode outputNode;
 
     private EventHandler<DragEvent> mIconDragOverRoot = null;
     private EventHandler<DragEvent> mIconDragDropped = null;
@@ -48,6 +54,9 @@ public class RootLayout extends AnchorPane{
     @FXML
     private void initialize() {
 
+        //Create OutputNode
+        outputNode = new OutputNode();
+
         //Add one icon that will be used for the drag-drop process
         //This is added as a child to the root anchorpane so it can be visible
         //on both sides of the split pane.
@@ -58,15 +67,72 @@ public class RootLayout extends AnchorPane{
         getChildren().add(mDragOverIcon);
 
         //populate left pane with multiple colored icons for testing
-        for (int i = 0; i < 7; i++) {
+
+        HBox pane = new HBox();
+
+        ArrayList<HBox> hBoxes= new ArrayList<HBox>();
+
+        Integer numberOfMainIcons = 7;
+
+        for (int i = 0; i < numberOfMainIcons; i++) {
 
             DragIcon icn = new DragIcon();
 
             addDragDetection(icn);
 
             icn.setType(DragIconType.values()[i]);
-            left_pane.getChildren().add(icn);
+
+            pane.getChildren().add(icn);
+
+            if( i == 1){
+
+                hBoxes.add(pane);
+
+                pane = new HBox();
+
+            }
+
+
+            if((i+1) % 4 == 0){
+                hBoxes.add(pane);
+
+
+                pane = new HBox();
+
+                continue;
+            }
+
+            if( i + 1 == numberOfMainIcons){
+
+                hBoxes.add(pane);
+
+            }
+
         }
+
+        Label componentLabels = new Label("Components");
+
+        left_pane.getChildren().add(componentLabels);
+        left_pane.getChildren().add(hBoxes.get(0));
+
+
+
+
+        System.out.println("Number of Hboxes: "+hBoxes.size());
+
+        Label otherComponents = new Label("Other Components");
+
+        left_pane.getChildren().add(otherComponents);
+//        left_pane.getChildren().addAll( hBoxes.get(2), hBoxes.get(3), hBoxes.get(4),hBoxes.get(5),hBoxes.get(6));
+
+        for (int i = 1; i < hBoxes.size(); i++) {
+            left_pane.getChildren().add(hBoxes.get(i));
+        }
+
+        AnchorPane.setTopAnchor(outputNode, 10.0);
+        AnchorPane.setRightAnchor(outputNode, 10.0);
+
+        right_pane.getChildren().add(outputNode);
 
         buildDragHandlers();
     }
