@@ -15,6 +15,10 @@
 	rgba(255, 255, 255, 0.35);
 }
 
+.no-border {
+    -fx-border: transparent;
+}
+
 .left-link-handle:hover {
 	-fx-background-radius: 0 0 0 10;
 	-fx-background-color:
@@ -47,4 +51,24 @@
 
 .icon-purple {
 	-fx-background-color: purple;
+}
+
+
+.title{
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+
+.description{
+  -fx-fill: FIREBRICK;
+     -fx-font-size: 12px;
+     -fx-font-weight: bold;
+
+}
+
+.recommendation{
+-fx-fill: FIREBRICK;
+     -fx-font-size: 12px;
 }

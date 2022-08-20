@@ -6,18 +6,18 @@ import javafx.scene.image.ImageView;
 import java.io.InputStream;
 import java.util.Objects;
 
-public class DraggableImageview{
+public class DraggableImageview {
 
     private Class callingClass;
     private DragIconType mType;
 
-    public DraggableImageview(Class callingClass, DragIconType type){
+    public DraggableImageview(Class callingClass, DragIconType type) {
         this.callingClass = callingClass;
-    mType = type;
+        mType = type;
 
     }
 
-    public String getLabel(){
+    public String getLabel() {
         String label;
 
         switch (mType) {
@@ -59,10 +59,18 @@ public class DraggableImageview{
             case VAVLE:
                 label = "Valve";
                 break;
+            case RTU:
+                label = "RTU";
+                break;
+            case PLU:
+                label = "PLU";
+                break;
+            case DCS:
+                label = "DCS";
+                break;
 
             default:
                 throw new RuntimeException("An Icon type must be selected");
-
 
 
         }
@@ -113,10 +121,18 @@ public class DraggableImageview{
             case VAVLE:
                 image = new Image(Objects.requireNonNull(callingClass.getResourceAsStream("/images/valve.png")));
                 break;
+            case RTU:
+                image = new Image(Objects.requireNonNull(callingClass.getResourceAsStream("/images/rtu.png")));
+                break;
+            case PLU:
+                image = new Image(Objects.requireNonNull(callingClass.getResourceAsStream("/images/plu.png")));
+                break;
+            case DCS:
+                image = new Image(Objects.requireNonNull(callingClass.getResourceAsStream("/images/dcs.png")));
+                break;
 
             default:
                 throw new RuntimeException("An Icon type must be selected");
-
 
 
         }

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Point2D;
@@ -72,7 +71,7 @@ public class RootLayout extends AnchorPane{
 
         ArrayList<HBox> hBoxes= new ArrayList<HBox>();
 
-        Integer numberOfMainIcons = 7;
+        Integer numberOfMainIcons = 12;
 
         for (int i = 0; i < numberOfMainIcons; i++) {
 
@@ -84,7 +83,7 @@ public class RootLayout extends AnchorPane{
 
             pane.getChildren().add(icn);
 
-            if( i == 1){
+            if( i == 4){
 
                 hBoxes.add(pane);
 
@@ -93,7 +92,9 @@ public class RootLayout extends AnchorPane{
             }
 
 
-            if((i+1) % 4 == 0){
+
+
+            if((i+1) % 3 == 0){
                 hBoxes.add(pane);
 
 
@@ -114,18 +115,19 @@ public class RootLayout extends AnchorPane{
 
         left_pane.getChildren().add(componentLabels);
         left_pane.getChildren().add(hBoxes.get(0));
+        left_pane.getChildren().add(hBoxes.get(1));
 
 
 
 
-        System.out.println("Number of Hboxes: "+hBoxes.size());
+
 
         Label otherComponents = new Label("Other Components");
 
         left_pane.getChildren().add(otherComponents);
 //        left_pane.getChildren().addAll( hBoxes.get(2), hBoxes.get(3), hBoxes.get(4),hBoxes.get(5),hBoxes.get(6));
 
-        for (int i = 1; i < hBoxes.size(); i++) {
+        for (int i = 2; i < hBoxes.size(); i++) {
             left_pane.getChildren().add(hBoxes.get(i));
         }
 
@@ -249,6 +251,7 @@ public class RootLayout extends AnchorPane{
                     if (container.getValue("scene_coords") != null) {
 
                         DraggableNode node = new DraggableNode(right_pane);
+
 
                         node.setType(container.getValue("type"));
                         right_pane.getChildren().add(node);

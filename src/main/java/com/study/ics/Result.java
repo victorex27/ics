@@ -1,20 +1,31 @@
 package com.study.ics;
 
+import org.controlsfx.control.RangeSlider;
+
 public class Result {
 
-    private String errorCode;
-    private String descriptionLink;
+    public String code;
+    public String description;
 
-    public Result(String errorCode, String descriptionLink){
-        this.errorCode = errorCode;
-        this.descriptionLink = descriptionLink;
+    public String recommendation;
+
+    public Result(){}
+
+    public Result(String code, String description, String recommendation){
+        this.code = code;
+        this.description = description;
+        this.recommendation = recommendation;
     }
 
-    public String getErrorCode() {
-        return errorCode;
+    public String getCode() {
+        return code;
     }
 
-    public String getDescriptionLink() {
-        return descriptionLink;
+    public String getDescription() {
+        return description;
+    }
+
+    public String getRecommendation() {
+        return recommendation;
     }
 }

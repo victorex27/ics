@@ -7,7 +7,9 @@ import javafx.beans.Observable;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -17,15 +19,13 @@ import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
+import javafx.stage.WindowEvent;
 
 
 public class DraggableNode extends AnchorPane {
@@ -59,7 +59,8 @@ public class DraggableNode extends AnchorPane {
     @FXML
     private Button connectorRight;
 
-    @FXML private ImageView imageView;
+    @FXML
+    private ImageView imageView;
 
     AnchorPane parentPane;
 
@@ -76,19 +77,42 @@ public class DraggableNode extends AnchorPane {
 
     private DraggableImageview draggableImageview;
 
+    private CustomContextMenu contextMenu;
+
+    private Label plantNumber;
+
+    private ArrayList<DraggableNode> connectedNodes = new ArrayList<>();
+
+
+    public ArrayList<DraggableNode> getConnectedNodes(){
+        return connectedNodes;
+    }
+
+    public void addToConnectedNodes(DraggableNode node){
+        connectedNodes.add(node);
+    }
+
+    public void removeFromConnectedNode(DraggableNode node){
+        connectedNodes.remove(node);
+    }
+
     public DraggableNode(AnchorPane _parentPane) {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(
-                getClass().getResource("DraggableNode.fxml")
-        );
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("DraggableNode.fxml"));
         parentPane = _parentPane;
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
         self = this;
 
+
         try {
             fxmlLoader.load();
+
+            plantNumber = new Label();
+
+            contextMenu = new CustomContextMenu(title_bar, plantNumber);
+
 
             connectorLeft.setOnAction(e -> {
                 connectorType = ConnectorType.LEFT;
@@ -119,10 +143,21 @@ public class DraggableNode extends AnchorPane {
         }
     }
 
+
     @FXML
     private void initialize() {
         buildNodeDragHandlers();
     }
+
+    @FXML
+    private void setOnContextMenuRequested(ContextMenuEvent event) {
+        System.out.println("requested");
+        contextMenu.show(self, event.getScreenX(), event.getScreenY());
+//        contextMenu.show(self, parentPane.getLayoutX() + self.getLayoutX(), parentPane.getLayoutY() + self.getLayoutY());
+    }
+
+    ;
+
 
     public void relocateToPoint(Point2D p) {
 
@@ -130,10 +165,7 @@ public class DraggableNode extends AnchorPane {
         //scene coordinates
         Point2D localCoords = getParent().sceneToLocal(p);
 
-        relocate(
-                (int) (localCoords.getX() - mDragOffset.getX()),
-                (int) (localCoords.getY() - mDragOffset.getY())
-        );
+        relocate((int) (localCoords.getX() - mDragOffset.getX()), (int) (localCoords.getY() - mDragOffset.getY()));
     }
 
     public DragIconType getType() {
@@ -143,9 +175,6 @@ public class DraggableNode extends AnchorPane {
     public void setType(DragIconType type) {
 
         mType = type;
-
-//        getStyleClass().clear();
-//        getStyleClass().add("dragicon");
 
         draggableImageview = new DraggableImageview(getClass(), mType);
 
@@ -210,9 +239,7 @@ public class DraggableNode extends AnchorPane {
                 //begin drag ops
                 mDragOffset = new Point2D(event.getX(), event.getY());
 
-                relocateToPoint(
-                        new Point2D(event.getSceneX(), event.getSceneY())
-                );
+                relocateToPoint(new Point2D(event.getSceneX(), event.getSceneY()));
 
                 ClipboardContent content = new ClipboardContent();
                 DragContainer container = new DragContainer();
@@ -249,10 +276,9 @@ public class DraggableNode extends AnchorPane {
             DraggableNode beginningNode = connectingNodes[0];
             DraggableNode endingNode = connectingNodes[1];
 
-            if(beginningNode.equals(endingNode)){
+            if (beginningNode.equals(endingNode)) {
                 return;
             }
-
 
 
             CubicCurve line = new CubicCurve();
@@ -325,33 +351,22 @@ public class DraggableNode extends AnchorPane {
 
             case TOP:
 
-                xStart = node.layoutXProperty()
-                        .add(node.translateXProperty())
-                        .add(node.widthProperty().divide(2));
-                yStart = node.layoutYProperty()
-                        .add(node.translateYProperty());
+                xStart = node.layoutXProperty().add(node.translateXProperty()).add(node.widthProperty().divide(2));
+                yStart = node.layoutYProperty().add(node.translateYProperty());
                 break;
             case LEFT:
                 xStart = node.layoutXProperty().add(node.translateXProperty());
-                yStart = node.layoutYProperty()
-                        .add(node.translateYProperty())
-                        .add(node.heightProperty().divide(2));
+                yStart = node.layoutYProperty().add(node.translateYProperty()).add(node.heightProperty().divide(2));
                 break;
             case RIGHT:
                 xStart = node.layoutXProperty().add(node.translateXProperty()).add(node.widthProperty());
-                yStart = node.layoutYProperty()
-                        .add(node.translateYProperty())
-                        .add(node.heightProperty().divide(2));
+                yStart = node.layoutYProperty().add(node.translateYProperty()).add(node.heightProperty().divide(2));
                 break;
             case BOTTOM:
 
-                xStart = node.layoutXProperty()
-                        .add(node.translateXProperty())
-                        .add(node.widthProperty().divide(2));
+                xStart = node.layoutXProperty().add(node.translateXProperty()).add(node.widthProperty().divide(2));
 
-                yStart = node.layoutYProperty().subtract(node.translateYProperty())
-                        .add(node.translateYProperty())
-                        .add(node.heightProperty());
+                yStart = node.layoutYProperty().subtract(node.translateYProperty()).add(node.translateYProperty()).add(node.heightProperty());
                 break;
             default:
                 throw new RuntimeException("Invalid Connector Type");
@@ -363,6 +378,15 @@ public class DraggableNode extends AnchorPane {
         arrayList.add(yStart);
 
         return arrayList;
+    }
+
+
+    public String getTile(){
+        return title_bar.getText();
+    }
+
+    public String getPlantNumber(){
+        return  plantNumber.getText();
     }
 
     public Button getActiveButton() {

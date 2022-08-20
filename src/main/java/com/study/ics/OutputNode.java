@@ -1,21 +1,25 @@
 package com.study.ics;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
+import com.google.gson.stream.JsonReader;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.ProgressIndicator;
+import javafx.geometry.Insets;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import com.google.gson.*;
 
 public class OutputNode extends AnchorPane {
 
@@ -43,6 +47,9 @@ public class OutputNode extends AnchorPane {
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
+        this.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
+        this.getStyleClass().add("output");
+
         try {
             fxmlLoader.load();
 
@@ -52,13 +59,23 @@ public class OutputNode extends AnchorPane {
     }
 
     @FXML
-    private void initialize() {
+    private void initialize() throws IOException {
 
+        Gson gson = new Gson();
+
+
+
+        Reader reader = Files.newBufferedReader(Paths.get("errorCode.json"));
+
+
+        Result[] data = gson.fromJson(reader, Result[].class);
+        System.out.println("data: "+data);
         scan.setOnAction(e -> {
 
             scan.setDisable(true);
 
             progressBar.setProgress(ProgressIndicator.INDETERMINATE_PROGRESS);
+
 
 
 
@@ -70,22 +87,30 @@ public class OutputNode extends AnchorPane {
                                 progressBar.setProgress(0);
                                 scan.setDisable(false);
 
-                                ArrayList<Result> results = OutputNode.getResult();
-
-                                for(Result result: results){
-//                                    Pane pane = new Pane();
-
-                                    Hyperlink a = new Hyperlink(result.getErrorCode());
 
 
+                                for(Result result: data){
+                                    VBox innerVbox = new VBox();
 
+                                    innerVbox.setSpacing(10.0);
+                                    innerVbox.setPadding(new Insets(5,5,15,5));
 
-                                    a.setOnAction( e->{
+                                    Label title = new Label(result.getCode());
+                                    title.setWrapText(true);
+                                    title.getStyleClass().add("title");
+                                    Label description = new Label(result.getDescription());
+                                    description.setWrapText(true);
 
-//                                            webEngine.load(result.getDescriptionLink());
-                                    });
+                                    description.getStyleClass().add("description");
+                                    Label recommendation = new Label(result.getRecommendation());
+                                    recommendation.setWrapText(true);
+                                    recommendation.getStyleClass().add("recommendation");
 
-                                    vBox.getChildren().add(a);
+                                    innerVbox.getChildren().add(title);
+                                    innerVbox.getChildren().add(description);
+                                    innerVbox.getChildren().add(recommendation);
+
+                                    vBox.getChildren().add(innerVbox);
                                 }
 
 
@@ -105,12 +130,12 @@ public class OutputNode extends AnchorPane {
     public static ArrayList<Result> getResult(){
         ArrayList<Result> results = new ArrayList<Result>();
 
-        results.add( new Result("E01","https://www.facebook.com"));
-        results.add( new Result("E02","https://www.facebook.com"));
-        results.add( new Result("E03","https://www.facebook.com"));
-        results.add( new Result("E04","https://www.facebook.com"));
-        results.add( new Result("E05","https://www.facebook.com"));
-        results.add( new Result("E06","https://www.facebook.com"));
+        results.add( new Result("E01","https://www.facebook.com","recommendation"));
+        results.add( new Result("E02","https://www.facebook.com","recommendation"));
+        results.add( new Result("E03","https://www.facebook.com","recommendation"));
+        results.add( new Result("E04","https://www.facebook.com","recommendation"));
+        results.add( new Result("E05","https://www.facebook.com","recommendation"));
+        results.add( new Result("E06","https://www.facebook.com","recommendation"));
         return results;
     }
 

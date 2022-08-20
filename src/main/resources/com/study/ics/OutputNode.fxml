@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
@@ -17,9 +18,9 @@
     <children>
         <Button fx:id="scan" layoutX="27.0" layoutY="22.0" mnemonicParsing="false" text="Scan" />
         <ProgressBar fx:id="progressBar" layoutX="89.0" layoutY="25.0" prefWidth="200.0" progress="0.0" />
-        <ScrollPane layoutX="27.0" layoutY="67.0" prefHeight="308.0" prefWidth="262.0">
+        <ScrollPane hbarPolicy="NEVER" layoutX="27.0" layoutY="67.0" prefWidth="262.0" style="-fx-border-color: transparent;">
             <content>
-                <VBox fx:id="vBox" />
+                <VBox fx:id="vBox" prefWidth="260.0" style="-fx-border-color: transparenttransparent;" />
             </content>
         </ScrollPane>
     </children>

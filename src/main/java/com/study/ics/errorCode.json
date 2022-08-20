@@ -1,0 +1,42 @@
+[
+  {
+    "code": "E01",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ante arcu, hendrerit non lorem at, porta iaculis dolor. Curabitur quis sodales massa.",
+    "recommendation": "Quisque eget lectus ac odio tempus viverra. Pellentesque quis libero sed lectus rhoncus egestas. Integer a accumsan velit. Proin velit urna, rhoncus in magna sit amet, volutpat interdum lectus. Aliquam quis ipsum massa. Morbi eu sem fringilla, posuere sem nec, pharetra justo. Cras sed pretium elit."
+  },
+  {
+    "code": "E02",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ante arcu, hendrerit non lorem at, porta iaculis dolor. Curabitur quis sodales massa.",
+    "recommendation": "Quisque eget lectus ac odio tempus viverra. Pellentesque quis libero sed lectus rhoncus egestas. Integer a accumsan velit. Proin velit urna, rhoncus in magna sit amet, volutpat interdum lectus. Aliquam quis ipsum massa. Morbi eu sem fringilla, posuere sem nec, pharetra justo. Cras sed pretium elit."
+  },
+  {
+    "code": "E03",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ante arcu, hendrerit non lorem at, porta iaculis dolor. Curabitur quis sodales massa.",
+    "recommendation": "Quisque eget lectus ac odio tempus viverra. Pellentesque quis libero sed lectus rhoncus egestas. Integer a accumsan velit. Proin velit urna, rhoncus in magna sit amet, volutpat interdum lectus. Aliquam quis ipsum massa. Morbi eu sem fringilla, posuere sem nec, pharetra justo. Cras sed pretium elit."
+  },
+  {
+    "code": "E04",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ante arcu, hendrerit non lorem at, porta iaculis dolor. Curabitur quis sodales massa.",
+    "recommendation": "Quisque eget lectus ac odio tempus viverra. Pellentesque quis libero sed lectus rhoncus egestas. Integer a accumsan velit. Proin velit urna, rhoncus in magna sit amet, volutpat interdum lectus. Aliquam quis ipsum massa. Morbi eu sem fringilla, posuere sem nec, pharetra justo. Cras sed pretium elit."
+  },
+  {
+    "code": "E05",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ante arcu, hendrerit non lorem at, porta iaculis dolor. Curabitur quis sodales massa.",
+    "recommendation": "Quisque eget lectus ac odio tempus viverra. Pellentesque quis libero sed lectus rhoncus egestas. Integer a accumsan velit. Proin velit urna, rhoncus in magna sit amet, volutpat interdum lectus. Aliquam quis ipsum massa. Morbi eu sem fringilla, posuere sem nec, pharetra justo. Cras sed pretium elit."
+  },
+  {
+    "code": "E06",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ante arcu, hendrerit non lorem at, porta iaculis dolor. Curabitur quis sodales massa.",
+    "recommendation": "Quisque eget lectus ac odio tempus viverra. Pellentesque quis libero sed lectus rhoncus egestas. Integer a accumsan velit. Proin velit urna, rhoncus in magna sit amet, volutpat interdum lectus. Aliquam quis ipsum massa. Morbi eu sem fringilla, posuere sem nec, pharetra justo. Cras sed pretium elit."
+  },
+  {
+    "code": "E07",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ante arcu, hendrerit non lorem at, porta iaculis dolor. Curabitur quis sodales massa.",
+    "recommendation": "Quisque eget lectus ac odio tempus viverra. Pellentesque quis libero sed lectus rhoncus egestas. Integer a accumsan velit. Proin velit urna, rhoncus in magna sit amet, volutpat interdum lectus. Aliquam quis ipsum massa. Morbi eu sem fringilla, posuere sem nec, pharetra justo. Cras sed pretium elit."
+  },
+  {
+    "code": "E08",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ante arcu, hendrerit non lorem at, porta iaculis dolor. Curabitur quis sodales massa.",
+    "recommendation": "Quisque eget lectus ac odio tempus viverra. Pellentesque quis libero sed lectus rhoncus egestas. Integer a accumsan velit. Proin velit urna, rhoncus in magna sit amet, volutpat interdum lectus. Aliquam quis ipsum massa. Morbi eu sem fringilla, posuere sem nec, pharetra justo. Cras sed pretium elit."
+  }
+]

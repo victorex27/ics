@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="100.0" styleClass="dragicon" type="javafx.scene.control.ContextMenu" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+    <items>
+        <MenuItem fx:id="menuItem1" mnemonicParsing="false" text="Name">
+            <graphic>
+                <TextField fx:id="textField" />
+            </graphic>
+        </MenuItem>
+        <MenuItem fx:id="menuItem2" mnemonicParsing="false" text="Plant Number">
+            <graphic>
+                <ComboBox fx:id="comboBox" prefWidth="150.0" />
+            </graphic>
+        </MenuItem>
+    </items>
+
+
+</fx:root>
